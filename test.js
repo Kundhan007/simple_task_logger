@@ -59,11 +59,11 @@ function createTaskColumn(label) {
     const column = document.createElement("div");
     column.className = "task-column";
 
-    // Label above input box
-    const title = document.createElement("div");
-    title.textContent = label;
-    title.className = "task-label";
-    column.appendChild(title);
+    // // Label above input box
+    // const title = document.createElement("div");
+    // title.textContent = label;
+    // title.className = "task-label";
+    // column.appendChild(title);
 
     // Add initial task
     addTask(column);
