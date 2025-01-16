@@ -1,0 +1,130 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f9f9f9;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#app {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    background-color: #007bff;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* General container styling */
+.time-logger-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-family: Arial, sans-serif;
+    padding: 10px;
+}
+
+/* Header row styling */
+.header-row {
+    display: flex;
+    gap: 10px;
+    font-weight: bold;
+    text-align: center;
+    background-color: #f4f4f4;
+    padding: 5px;
+    border-bottom: 2px solid #ddd;
+}
+
+/* Header column styling */
+.header-row>div {
+    flex: 1;
+    min-width: 80px;
+}
+
+/* Row styling */
+.time-logger-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+/* SNO column styling */
+.sno-cell {
+    flex: 1;
+    min-width: 30px;
+    font-weight: bold;
+}
+
+/* Time column styling */
+.time-cell {
+    flex: 2;
+    min-width: 60px;
+    text-align: center;
+}
+
+/* Task column styling */
+.task-column {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex: 4;
+    min-width: 120px;
+}
+
+/* Task label styling */
+.task-label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Task input box styling */
+.task-input {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f0f8ff;
+    /* Light blue background */
+}
+
+/* Add task button styling */
+.add-task-button {
+    padding: 5px 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.add-task-button:hover {
+    background-color: #0056b3;
+}
