@@ -1,41 +1,47 @@
 // HTML structure
 const app = document.getElementById("app");
 
-// Sample date heading
+// Display today's date as the heading
 const heading = document.createElement("h2");
-heading.textContent = "Date: Sample Text";
+const today = new Date().toLocaleDateString("en-GB"); // Day first format
+heading.textContent = `Date: ${today}`;
 app.appendChild(heading);
 
 // Create a container for the time logger
 const container = document.createElement("div");
-container.style.display = "flex";
-container.style.flexDirection = "column";
-container.style.gap = "10px";
+container.className = "time-logger-container";
 app.appendChild(container);
+
+// Add column headers
+const headerRow = document.createElement("div");
+headerRow.className = "header-row";
+
+const headers = ["SNO", "Time (AM/PM)", "Planned", "Actual"];
+headers.forEach(header => {
+    const headerDiv = document.createElement("div");
+    headerDiv.textContent = header;
+    headerDiv.className = header.toLowerCase().replace(/[^a-z]/g, "-") + "-header";
+    headerRow.appendChild(headerDiv);
+});
+container.appendChild(headerRow);
 
 // Generate a row dynamically
 let snoCounter = 1;
 
-function createRow() {
+function createRow(hour) {
     const row = document.createElement("div");
-    row.style.display = "flex";
-    row.style.flexWrap = "wrap";
-    row.style.gap = "10px";
-    row.style.alignItems = "center";
+    row.className = "time-logger-row";
 
     // SNO cell
     const sno = document.createElement("div");
     sno.textContent = snoCounter++;
-    sno.style.flex = "1";
-    sno.style.minWidth = "30px";
-    sno.style.fontWeight = "bold";
+    sno.className = "sno-cell";
     row.appendChild(sno);
 
     // Time (hr) cell
     const time = document.createElement("div");
-    time.textContent = "Time (hr)";
-    time.style.flex = "2";
-    time.style.minWidth = "60px";
+    time.textContent = hour;
+    time.className = "time-cell";
     row.appendChild(time);
 
     // Planned tasks cell
@@ -51,17 +57,13 @@ function createRow() {
 
 function createTaskColumn(label) {
     const column = document.createElement("div");
-    column.style.display = "flex";
-    column.style.flexDirection = "column";
-    column.style.gap = "5px";
-    column.style.flex = "4";
-    column.style.minWidth = "120px";
+    column.className = "task-column";
 
-    // Label
-    const title = document.createElement("div");
-    title.textContent = label;
-    title.style.fontWeight = "bold";
-    column.appendChild(title);
+    // // Label above input box
+    // const title = document.createElement("div");
+    // title.textContent = label;
+    // title.className = "task-label";
+    // column.appendChild(title);
 
     // Add initial task
     addTask(column);
@@ -69,7 +71,7 @@ function createTaskColumn(label) {
     // Add button
     const addButton = document.createElement("button");
     addButton.textContent = "+";
-    addButton.style.marginTop = "5px";
+    addButton.className = "add-task-button";
     addButton.addEventListener("click", () => addTask(column));
     column.appendChild(addButton);
 
@@ -80,8 +82,7 @@ function addTask(column) {
     const task = document.createElement("input");
     task.type = "text";
     task.placeholder = "Enter task...";
-    task.style.padding = "5px";
-    task.style.flex = "1";
+    task.className = "task-input";
     column.insertBefore(task, column.lastElementChild);
 
     // Adjust parent container width dynamically
@@ -89,15 +90,21 @@ function addTask(column) {
 }
 
 function adjustColumnWidths() {
-    const columns = container.querySelectorAll("div > div");
+    const columns = container.querySelectorAll(".task-column");
     columns.forEach(column => {
-        const tasks = column.querySelectorAll("input");
+        const tasks = column.querySelectorAll(".task-input");
         const maxWidth = Math.max(...Array.from(tasks).map(task => task.value.length * 8 || 120));
         column.style.minWidth = `${maxWidth}px`;
     });
 }
 
-// Generate initial rows
-for (let i = 0; i < 4; i++) {
-    createRow();
+// Generate initial rows with hours from 8:00 AM to 12:00 PM and 1:00 PM to 12:00 AM
+const startHour = 8;
+const endHour = 12;
+
+for (let hour = startHour; hour <= endHour; hour++) {
+    createRow(`${hour}:00 AM`);
+}
+for (let hour = 1; hour <= endHour; hour++) {
+    createRow(`${hour}:00 PM`);
 }
