@@ -3,7 +3,7 @@ const app = document.getElementById("app");
 
 // Display today's date as the heading
 const heading = document.createElement("h2");
-const today = new Date().toLocaleDateString();
+const today = new Date().toLocaleDateString("en-GB");
 heading.textContent = `Date: ${today}`;
 app.appendChild(heading);
 
