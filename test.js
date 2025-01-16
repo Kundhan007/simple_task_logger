@@ -1,9 +1,10 @@
 // HTML structure
 const app = document.getElementById("app");
 
-// Sample date heading
+// Display today's date as the heading
 const heading = document.createElement("h2");
-heading.textContent = "Date: Sample Text";
+const today = new Date().toLocaleDateString();
+heading.textContent = `Date: ${today}`;
 app.appendChild(heading);
 
 // Create a container for the time logger
@@ -16,7 +17,7 @@ app.appendChild(container);
 // Generate a row dynamically
 let snoCounter = 1;
 
-function createRow() {
+function createRow(hour) {
     const row = document.createElement("div");
     row.style.display = "flex";
     row.style.flexWrap = "wrap";
@@ -33,7 +34,7 @@ function createRow() {
 
     // Time (hr) cell
     const time = document.createElement("div");
-    time.textContent = "Time (hr)";
+    time.textContent = hour;
     time.style.flex = "2";
     time.style.minWidth = "60px";
     row.appendChild(time);
@@ -82,6 +83,9 @@ function addTask(column) {
     task.placeholder = "Enter task...";
     task.style.padding = "5px";
     task.style.flex = "1";
+    task.style.border = "1px solid #ccc";
+    task.style.borderRadius = "4px";
+    task.style.backgroundColor = "#f0f8ff"; // Light blue background for added tasks
     column.insertBefore(task, column.lastElementChild);
 
     // Adjust parent container width dynamically
@@ -97,7 +101,9 @@ function adjustColumnWidths() {
     });
 }
 
-// Generate initial rows
-for (let i = 0; i < 4; i++) {
-    createRow();
+// Generate initial rows with hours from 10:00 AM to 11:00 AM
+const startHour = 10;
+const endHour = 11;
+for (let hour = startHour; hour <= endHour; hour++) {
+    createRow(`${hour}:00 AM`);
 }
