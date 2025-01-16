@@ -3,7 +3,7 @@ const app = document.getElementById("app");
 
 // Display today's date as the heading
 const heading = document.createElement("h2");
-const today = new Date().toLocaleDateString("en-GB");
+const today = new Date().toLocaleDateString("en-GB"); // Day first format
 heading.textContent = `Date: ${today}`;
 app.appendChild(heading);
 
@@ -98,10 +98,13 @@ function adjustColumnWidths() {
     });
 }
 
-// Generate initial rows with hours from 10:00 AM to 11:00 AM
-const startHour = 10;
-const endHour = 11;
+// Generate initial rows with hours from 8:00 AM to 12:00 PM and 1:00 PM to 12:00 AM
+const startHour = 8;
+const endHour = 12;
+
 for (let hour = startHour; hour <= endHour; hour++) {
     createRow(`${hour}:00 AM`);
+}
+for (let hour = 1; hour <= endHour; hour++) {
     createRow(`${hour}:00 PM`);
 }
